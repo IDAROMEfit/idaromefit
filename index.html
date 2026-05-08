@@ -1627,19 +1627,10 @@
   }
   .pc-suit-corner svg { width: 100%; height: 100%; display: block; }
 
-  /* ── CENTRAL SUIT (large, centred watermark) ── */
+  /* ── CENTRAL SUIT (hidden – watermark removed) ── */
   .pc-suit-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -52%);
-    width: 55%;
-    aspect-ratio: 1;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.13;
+    display: none !important;
   }
-  .pc-suit-center svg { width: 100%; height: 100%; display: block; }
 
   /* ── CARD BODY (title + divider + content) ── */
   .pc-body {
@@ -1648,26 +1639,28 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 14px 18px 20px;
+    padding: 18px 20px 24px;
     overflow: hidden;
+    justify-content: flex-start;
   }
 
   .pc-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 900;
-    letter-spacing: 1.4px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
     color: #fff;
     line-height: 1.15;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+    text-align: left;
   }
 
   .pc-divider {
     height: 2px;
-    width: 36px;
+    width: 48px;
     border-radius: 2px;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
     flex-shrink: 0;
   }
   .pc-divider.red  { background: #ff2244; box-shadow: 0 0 8px rgba(255,34,68,0.7); }
@@ -1678,21 +1671,26 @@
     list-style: none;
     padding: 0; margin: 0;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
   }
   .pc-list li {
     position: relative;
-    padding: 4px 0 4px 16px;
-    font-size: 13px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.80);
+    padding: 6px 0 6px 22px;
+    font-size: 19.5px;
+    line-height: 1.35;
+    color: rgba(255,255,255,0.85);
     font-weight: 500;
+    text-align: left;
   }
   .pc-list li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 5px; height: 5px;
+    top: 14px;
+    width: 7px; height: 7px;
     border-radius: 50%;
   }
   .pc-list.red  li::before { background: #ff2244; box-shadow: 0 0 5px rgba(255,34,68,0.9); }
@@ -1700,12 +1698,24 @@
   .pc-list.gold  li::before{ background: #ffe033; box-shadow: 0 0 5px rgba(255,224,51,0.9); }
 
   .pc-text {
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.78);
+    font-size: 19px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     flex: 1;
+    text-align: justify;
+    hyphens: none;
+    -webkit-hyphens: none;
+    text-align-last: left;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  /* Override inline secondary-text size → 15.5px proporcional */
+  .pc-body .pc-text[style*="font-size:12px"],
+  .pc-body .pc-text[style*="font-size: 12px"] {
+    font-size: 15.5px !important;
+    line-height: 1.5 !important;
   }
 
   /* Alto valor badge */
@@ -1758,9 +1768,14 @@
       aspect-ratio: 5 / 8;
     }
     .pc-num { font-size: 28px; }
-    .pc-title { font-size: 15px; letter-spacing: 0.8px; }
-    .pc-list li, .pc-text { font-size: 11.5px; }
-    .pc-body { padding: 10px 12px 14px; }
+    .pc-title { font-size: 22px; letter-spacing: 1px; margin-bottom: 10px; }
+    .pc-list li, .pc-text { font-size: 14px; line-height: 1.4; }
+    .pc-body .pc-text[style*="font-size:12px"],
+    .pc-body .pc-text[style*="font-size: 12px"] { font-size: 12px !important; }
+    .pc-list li { padding: 4px 0 4px 18px; }
+    .pc-list li::before { top: 11px; width: 6px; height: 6px; }
+    .pc-divider { margin-bottom: 12px; width: 38px; }
+    .pc-body { padding: 12px 14px 16px; }
     .pc-header { padding: 12px 12px 0; }
 
     .servicio-toggle { gap: 10px; margin: 18px 0 34px; }
@@ -2314,8 +2329,8 @@
         <div class="pc-body">
           <h3 class="pc-title">Entrenamiento + Dieta</h3>
           <div class="pc-divider red"></div>
-          <p class="pc-text">Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antinflamatoria y pérdida de peso para lograr la rehabilitación lumbar completa.</p>
-          <p class="pc-text" style="color:rgba(255,255,255,0.55);font-size:12px;">Incluye todas las ventajas anteriores. Es la forma más efectiva de lograr una recuperación según la evidencia científica.</p>
+          <p class="pc-text">Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal y mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
+          <p class="pc-text" style="color:rgba(255,255,255,0.55);font-size:12px;">Incluye todas las ventajas del entrenamiento (1) y de la dieta (2). Es la forma más efectiva de lograr una correcta recuperación según la evidencia científica.</p>
         </div>
       </article>
 
@@ -2339,7 +2354,7 @@
           <div class="pc-divider gold"></div>
           <p class="pc-text">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso dentro del horario establecido.</p>
           <div class="pc-badge">Alto valor</div>
-          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">La parte de mayor valor del servicio. Esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores.</p>
+          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores.</p>
         </div>
       </article>
 
@@ -2432,8 +2447,8 @@
         <div class="pc-body">
           <h3 class="pc-title">Entrenamiento + Dieta</h3>
           <div class="pc-divider red"></div>
-          <p class="pc-text">Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antinflamatoria y pérdida de peso para lograr la rehabilitación lumbar completa.</p>
-          <p class="pc-text" style="color:rgba(255,255,255,0.55);font-size:12px;">Incluye todas las ventajas anteriores. Es la forma más efectiva de lograr una recuperación según la evidencia científica.</p>
+          <p class="pc-text">Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal y mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
+          <p class="pc-text" style="color:rgba(255,255,255,0.55);font-size:12px;">Incluye todas las ventajas del entrenamiento (1) y de la dieta (2). Es la forma más efectiva de lograr una correcta recuperación según la evidencia científica.</p>
         </div>
       </article>
 
@@ -2457,7 +2472,7 @@
           <div class="pc-divider gold"></div>
           <p class="pc-text">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso dentro del horario establecido.</p>
           <div class="pc-badge">Alto valor</div>
-          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">La parte de mayor valor del servicio. Esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores.</p>
+          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores.</p>
         </div>
       </article>
 
