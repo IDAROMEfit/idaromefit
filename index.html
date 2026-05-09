@@ -3063,13 +3063,40 @@
       activeDeck === 'online' ? closeAll() : openDeck('online');
     });
 
-    // Botones inferiores (misma lógica)
-    btnPresencialBottom.addEventListener('click', () => {
-      activeDeck === 'presencial' ? closeAll() : openDeck('presencial');
-    });
-    btnOnlineBottom.addEventListener('click', () => {
-      activeDeck === 'online' ? closeAll() : openDeck('online');
-    });
+    // Botones inferiores: cambio instantáneo + scroll a carta 1 sin lag
+    function openDeckFromBottom(which) {
+      if (activeDeck === which) { closeAll(); return; }
+      if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
+
+      const deck    = which === 'presencial' ? deckPresencial : deckOnline;
+      const deckOld = which === 'presencial' ? deckOnline     : deckPresencial;
+      const btn     = which === 'presencial' ? btnPresencial  : btnOnline;
+
+      resetBtns();
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      activeDeck = which;
+      syncBottomBtns(which);
+
+      // Cerrar el deck antiguo sin animación de altura
+      deckOld.style.transition = 'opacity 0.15s ease';
+      deckOld.classList.remove('open');
+      setTimeout(() => { deckOld.style.transition = ''; }, 200);
+
+      // Abrir el nuevo deck
+      requestAnimationFrame(() => deck.classList.add('open'));
+
+      // Scroll inmediato a la carta 1 del nuevo deck (sin esperar scroll end)
+      const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
+      const carta1 = deck.querySelector('.poker-card');
+      if (carta1) {
+        const top = carta1.getBoundingClientRect().top + window.scrollY - navH - 16;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      }
+    }
+
+    btnPresencialBottom.addEventListener('click', () => openDeckFromBottom('presencial'));
+    btnOnlineBottom.addEventListener('click', () => openDeckFromBottom('online'));
   })();
 </script>
 
