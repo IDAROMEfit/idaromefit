@@ -1602,7 +1602,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    padding: 8px 2px 36px;
+    padding: 8px 2px 12px;
     position: relative;
     z-index: 1;
   }
@@ -1711,6 +1711,11 @@
   .poker-deck-wrapper.open .poker-card:nth-child(2) { transition-delay: 0.18s; }
   .poker-deck-wrapper.open .poker-card:nth-child(3) { transition-delay: 0.32s; }
   .poker-deck-wrapper.open .poker-card:nth-child(4) { transition-delay: 0.46s; }
+
+  /* Reset delays instantly on close — prevents stale delay state on reopen */
+  .poker-deck-wrapper:not(.open) .poker-card {
+    transition-delay: 0s !important;
+  }
 
   .poker-card:hover {
     transform: translateY(-9px) scale(1.018);
@@ -1985,7 +1990,7 @@
     .poker-deck {
       grid-template-columns: repeat(2, 1fr);
       gap: 18px;
-      padding: 8px 2px 36px;
+      padding: 8px 2px 12px;
     }
     .poker-card {
       aspect-ratio: auto;
@@ -2009,7 +2014,7 @@
       grid-template-columns: 1fr 1fr;
       grid-auto-rows: 1fr;
       gap: 16px;
-      padding: 8px 2px 36px;
+      padding: 8px 2px 12px;
     }
     .poker-card {
       aspect-ratio: unset;
@@ -2889,7 +2894,7 @@
   </div><!-- /#decks-container -->
 
   <!-- Botones duplicados debajo de las cartas -->
-  <div class="servicio-toggle" id="toggle-bottom" style="display:none; margin-top:24px; margin-bottom:0;">
+  <div class="servicio-toggle" id="toggle-bottom" style="display:none; margin-top:8px; margin-bottom:16px;">
     <button type="button" class="toggle-btn" id="btn-presencial-bottom">
       Servicio Presencial
     </button>
@@ -2899,7 +2904,7 @@
   </div>
 
   <!-- Botón scroll circular debajo del desplegable -->
-  <div id="scroll-btn-servicios" style="display:none; justify-content:center; margin-top:16px;">
+  <div id="scroll-btn-servicios" style="display:none; justify-content:center; margin-top:0; margin-bottom:20px;">
     <button onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})"
       aria-label="Ir a la siguiente sección"
       style="
@@ -3217,10 +3222,10 @@
           toggleBottom.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
           toggleBottom.style.opacity = '1';
           toggleBottom.style.transform = 'translateY(0)';
-          scrollBtnServicios.style.transition = 'opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s';
+          scrollBtnServicios.style.transition = 'opacity 0.4s ease 0.12s, transform 0.4s ease 0.12s';
           scrollBtnServicios.style.opacity = '1';
           scrollBtnServicios.style.transform = 'translateY(0)';
-        }, 1250);
+        }, 650);
       }
     }
 
@@ -3301,40 +3306,23 @@
         showDeck(deck, hadOpen);
       }
 
-      // Si ya había un deck abierto, activar directamente sin scroll
+      // Si ya había un deck abierto, cambiar directamente sin scroll
       if (deckOld.classList.contains('open')) {
         activate();
         return;
       }
 
+      // Abrir el deck primero, luego scrollear a las cartas
+      activate();
+
       const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
-      const scrollDest = Math.max(
-        0,
-        toggleBar.getBoundingClientRect().top + window.scrollY - navH - 20
-      );
-
-      if (Math.abs(window.scrollY - scrollDest) < 5) {
-        activate();
-        return;
-      }
-
-      window.scrollTo({ top: scrollDest, behavior: 'smooth' });
-
-      let debounceTimer  = null;
-      const fallbackTimer = setTimeout(activate, 900);
-
-      function onScroll() {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(activate, 80);
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      pendingCleanup = function () {
-        clearTimeout(debounceTimer);
-        clearTimeout(fallbackTimer);
-        window.removeEventListener('scroll', onScroll);
-      };
+      // Dar tiempo al container para empezar a expandirse, luego scrollear a las cartas
+      setTimeout(() => {
+        const carta1 = deck.querySelector('.poker-card');
+        const target = carta1 || decksContainer;
+        const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      }, 80);
     }
 
     // Botones superiores
