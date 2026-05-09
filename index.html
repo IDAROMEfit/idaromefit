@@ -1132,10 +1132,15 @@
 
   .meto-tagline {
     font-size: 13px;
-    color: rgba(255,255,255,0.35);
+    color: #ffd633;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
+    text-shadow:
+      0 0 6px rgba(255,214,51,0.85),
+      0 0 14px rgba(255,214,51,0.55),
+      0 0 28px rgba(255,200,0,0.35);
+    animation: eligeGlow 2.4s ease-in-out infinite;
   }
 
   .meto-grid {
@@ -3001,16 +3006,22 @@
       activeDeck = which;
       syncBottomBtns(which);
 
+      function activate() {
+        deckOld.classList.remove('open');
+        requestAnimationFrame(() => deck.classList.add('open'));
+      }
+
+      // Si ya había un deck abierto, activar directamente sin scroll
+      if (deckOld.classList.contains('open')) {
+        activate();
+        return;
+      }
+
       const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
       const scrollDest = Math.max(
         0,
         toggleBar.getBoundingClientRect().top + window.scrollY - navH - 20
       );
-
-      function activate() {
-        deckOld.classList.remove('open');
-        requestAnimationFrame(() => deck.classList.add('open'));
-      }
 
       if (Math.abs(window.scrollY - scrollDest) < 5) {
         activate();
