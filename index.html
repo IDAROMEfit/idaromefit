@@ -479,7 +479,7 @@
   }
   .stat-label {
     font-size: 13px;
-    color: #ffe14a;
+    color: #fff;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -488,6 +488,12 @@
     z-index: 2;
     text-align: center;
     width: 100%;
+    text-shadow:
+      0 0 6px #ffe14a,
+      0 0 12px #ffe14a,
+      0 0 24px #ffe14a,
+      0 0 48px #ffaa00,
+      0 0 80px #ffaa00;
   }
 
   /* ============================================
@@ -1620,8 +1626,8 @@
 
   /* Small suit icon in corner */
   .pc-suit-corner {
-    width: 22px;
-    height: 22px;
+    width: 50px;
+    height: 50px;
     flex-shrink: 0;
     margin-top: 5px;
   }
@@ -1893,8 +1899,13 @@
       font-size: 10px;
       letter-spacing: 0.5px;
       line-height: 1.3;
-      color: #ffe14a;
+      color: #fff;
       text-align: center;
+      text-shadow:
+        0 0 6px #ffe14a,
+        0 0 12px #ffe14a,
+        0 0 24px #ffe14a,
+        0 0 48px #ffaa00;
     }
 
 
@@ -1948,8 +1959,13 @@
     .stat-label {
       font-size: 9px;
       letter-spacing: 0.3px;
-      color: #ffe14a;
+      color: #fff;
       text-align: center;
+      text-shadow:
+        0 0 6px #ffe14a,
+        0 0 12px #ffe14a,
+        0 0 24px #ffe14a,
+        0 0 48px #ffaa00;
     }
     .stat-flames {
       width: 84px;
@@ -2290,11 +2306,16 @@
           <div class="pc-num green">02</div>
           <div class="pc-suit-corner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="30" r="22" fill="none" stroke="#39e066" stroke-width="7" style="filter:drop-shadow(0 0 3px #39e066) drop-shadow(0 0 7px rgba(57,224,102,0.9))"/>
-              <circle cx="28" cy="58" r="22" fill="none" stroke="#39e066" stroke-width="7" style="filter:drop-shadow(0 0 3px #39e066) drop-shadow(0 0 7px rgba(57,224,102,0.9))"/>
-              <circle cx="72" cy="58" r="22" fill="none" stroke="#39e066" stroke-width="7" style="filter:drop-shadow(0 0 3px #39e066) drop-shadow(0 0 7px rgba(57,224,102,0.9))"/>
-              <rect x="44" y="56" width="12" height="22" fill="#39e066" style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9))"/>
-              <rect x="34" y="73" width="32" height="8" rx="4" fill="#39e066" style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9))"/>
+              <!-- circulo superior -->
+              <circle cx="50" cy="34" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
+              <!-- circulo izquierdo -->
+              <circle cx="33" cy="56" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
+              <!-- circulo derecho -->
+              <circle cx="67" cy="56" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
+              <!-- tallo -->
+              <line x1="50" y1="65" x2="50" y2="82" stroke="#39e066" stroke-width="6" stroke-linecap="round" style="filter:drop-shadow(0 0 4px #39e066)"/>
+              <!-- base -->
+              <line x1="35" y1="87" x2="65" y2="87" stroke="#39e066" stroke-width="6" stroke-linecap="round" style="filter:drop-shadow(0 0 4px #39e066)"/>
             </svg>
           </div>
         </div>
@@ -2304,7 +2325,7 @@
           <ul class="pc-list green">
             <li>Soporte nutricional y dietético personalizado</li>
             <li>Valoración física y antropométrica</li>
-            <li>Pérdida de grasa y dieta antinflamatoria</li>
+            <li>Pérdida de grasa y dieta antiinflamatoria</li>
             <li>Asesoramiento en suplementación</li>
             <li>Modificación dietética ilimitada</li>
           </ul>
@@ -2322,15 +2343,28 @@
           <div class="pc-num red">03</div>
           <div class="pc-suit-corner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 8 C50 8 10 38 10 62 C10 76 20 85 33 85 C40 85 46 81 50 76 C47 84 43 91 36 94 L64 94 C57 91 53 84 50 76 C54 81 60 85 67 85 C80 85 90 76 90 62 C90 38 50 8 50 8Z" fill="none" stroke="#ff2244" stroke-width="6" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #ff2244) drop-shadow(0 0 7px rgba(255,34,68,0.9))"/>
+              <path d="M50 8
+                       C50 8, 12 36, 12 58
+                       C12 74, 24 82, 37 78
+                       C42 76, 47 72, 50 68
+                       C53 72, 58 76, 63 78
+                       C76 82, 88 74, 88 58
+                       C88 36, 50 8, 50 8Z"
+                    fill="none" stroke="#ff2244" stroke-width="6" stroke-linejoin="round"
+                    style="filter:drop-shadow(0 0 4px #ff2244) drop-shadow(0 0 8px rgba(255,34,68,0.9))"/>
+              <!-- tallo -->
+              <line x1="50" y1="74" x2="50" y2="88" stroke="#ff2244" stroke-width="6" stroke-linecap="round"
+                    style="filter:drop-shadow(0 0 4px #ff2244)"/>
+              <!-- base -->
+              <line x1="35" y1="93" x2="65" y2="93" stroke="#ff2244" stroke-width="6" stroke-linecap="round"
+                    style="filter:drop-shadow(0 0 4px #ff2244)"/>
             </svg>
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">Entrenamiento + Dieta</h3>
+          <h3 class="pc-title">ENTRENAMIENTO + DIETA</h3>
           <div class="pc-divider red"></div>
-          <p class="pc-text">Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal y mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
-          <p class="pc-text" style="color:rgba(255,255,255,0.55);font-size:12px;">Incluye todas las ventajas del entrenamiento (1) y de la dieta (2). Es la forma más efectiva de lograr una correcta recuperación según la evidencia científica.</p>
+          <p class="pc-text">La combinación perfecta. Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal. Además de la mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
         </div>
       </article>
 
@@ -2408,11 +2442,16 @@
           <div class="pc-num green">02</div>
           <div class="pc-suit-corner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="30" r="22" fill="none" stroke="#39e066" stroke-width="7" style="filter:drop-shadow(0 0 3px #39e066) drop-shadow(0 0 7px rgba(57,224,102,0.9))"/>
-              <circle cx="28" cy="58" r="22" fill="none" stroke="#39e066" stroke-width="7" style="filter:drop-shadow(0 0 3px #39e066) drop-shadow(0 0 7px rgba(57,224,102,0.9))"/>
-              <circle cx="72" cy="58" r="22" fill="none" stroke="#39e066" stroke-width="7" style="filter:drop-shadow(0 0 3px #39e066) drop-shadow(0 0 7px rgba(57,224,102,0.9))"/>
-              <rect x="44" y="56" width="12" height="22" fill="#39e066" style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9))"/>
-              <rect x="34" y="73" width="32" height="8" rx="4" fill="#39e066" style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9))"/>
+              <!-- circulo superior -->
+              <circle cx="50" cy="34" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
+              <!-- circulo izquierdo -->
+              <circle cx="33" cy="56" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
+              <!-- circulo derecho -->
+              <circle cx="67" cy="56" r="17" fill="none" stroke="#39e066" stroke-width="6" style="filter:drop-shadow(0 0 4px #39e066) drop-shadow(0 0 8px rgba(57,224,102,0.8))"/>
+              <!-- tallo -->
+              <line x1="50" y1="65" x2="50" y2="82" stroke="#39e066" stroke-width="6" stroke-linecap="round" style="filter:drop-shadow(0 0 4px #39e066)"/>
+              <!-- base -->
+              <line x1="35" y1="87" x2="65" y2="87" stroke="#39e066" stroke-width="6" stroke-linecap="round" style="filter:drop-shadow(0 0 4px #39e066)"/>
             </svg>
           </div>
         </div>
@@ -2422,7 +2461,7 @@
           <ul class="pc-list green">
             <li>Soporte nutricional y dietético personalizado</li>
             <li>Valoración física y antropométrica</li>
-            <li>Pérdida de grasa y dieta antinflamatoria</li>
+            <li>Pérdida de grasa y dieta antiinflamatoria</li>
             <li>Asesoramiento en suplementación</li>
             <li>Modificación dietética ilimitada</li>
           </ul>
@@ -2440,15 +2479,28 @@
           <div class="pc-num red">03</div>
           <div class="pc-suit-corner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 8 C50 8 10 38 10 62 C10 76 20 85 33 85 C40 85 46 81 50 76 C47 84 43 91 36 94 L64 94 C57 91 53 84 50 76 C54 81 60 85 67 85 C80 85 90 76 90 62 C90 38 50 8 50 8Z" fill="none" stroke="#ff2244" stroke-width="6" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #ff2244) drop-shadow(0 0 7px rgba(255,34,68,0.9))"/>
+              <path d="M50 8
+                       C50 8, 12 36, 12 58
+                       C12 74, 24 82, 37 78
+                       C42 76, 47 72, 50 68
+                       C53 72, 58 76, 63 78
+                       C76 82, 88 74, 88 58
+                       C88 36, 50 8, 50 8Z"
+                    fill="none" stroke="#ff2244" stroke-width="6" stroke-linejoin="round"
+                    style="filter:drop-shadow(0 0 4px #ff2244) drop-shadow(0 0 8px rgba(255,34,68,0.9))"/>
+              <!-- tallo -->
+              <line x1="50" y1="74" x2="50" y2="88" stroke="#ff2244" stroke-width="6" stroke-linecap="round"
+                    style="filter:drop-shadow(0 0 4px #ff2244)"/>
+              <!-- base -->
+              <line x1="35" y1="93" x2="65" y2="93" stroke="#ff2244" stroke-width="6" stroke-linecap="round"
+                    style="filter:drop-shadow(0 0 4px #ff2244)"/>
             </svg>
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title">Entrenamiento + Dieta</h3>
+          <h3 class="pc-title">ENTRENAMIENTO + DIETA</h3>
           <div class="pc-divider red"></div>
-          <p class="pc-text">Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal y mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
-          <p class="pc-text" style="color:rgba(255,255,255,0.55);font-size:12px;">Incluye todas las ventajas del entrenamiento (1) y de la dieta (2). Es la forma más efectiva de lograr una correcta recuperación según la evidencia científica.</p>
+          <p class="pc-text">La combinación perfecta. Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal. Además de la mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
         </div>
       </article>
 
