@@ -2643,6 +2643,38 @@
     </div>
   </div>
 
+  <!-- Botones duplicados debajo de las cartas -->
+  <div class="servicio-toggle" id="toggle-bottom" style="display:none; margin-top:40px; margin-bottom:0;">
+    <button type="button" class="toggle-btn" id="btn-presencial-bottom">
+      Servicio Presencial
+    </button>
+    <button type="button" class="toggle-btn" id="btn-online-bottom">
+      Servicio Online
+    </button>
+  </div>
+
+  <!-- Botón scroll circular debajo del desplegable -->
+  <div id="scroll-btn-servicios" style="display:none; justify-content:center; margin-top:36px;">
+    <button onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})"
+      aria-label="Ir a la siguiente sección"
+      style="
+        width:64px; height:64px;
+        border-radius:50%;
+        background:transparent;
+        border:2px solid #39e066;
+        box-shadow:0 0 10px rgba(57,224,102,0.7), 0 0 22px rgba(57,224,102,0.4), inset 0 0 10px rgba(57,224,102,0.08);
+        display:flex; align-items:center; justify-content:center;
+        cursor:pointer;
+        transition:transform 0.2s, box-shadow 0.2s;
+      "
+      onmouseover="this.style.transform='translateY(3px)'; this.style.boxShadow='0 0 16px rgba(57,224,102,0.9), 0 0 32px rgba(57,224,102,0.5), inset 0 0 14px rgba(57,224,102,0.12)';"
+      onmouseout="this.style.transform=''; this.style.boxShadow='0 0 10px rgba(57,224,102,0.7), 0 0 22px rgba(57,224,102,0.4), inset 0 0 10px rgba(57,224,102,0.08)';">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+        style="filter:drop-shadow(0 0 4px rgba(57,224,102,0.9)) drop-shadow(0 0 8px rgba(57,224,102,0.6));">
+        <path d="M13 5v16M6 15l7 7 7-7" stroke="#39e066" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
 
 </section>
 
@@ -2882,23 +2914,69 @@
 <script>
   /* ── Toggle Presencial / Online (un solo scroll, sin parpadeo al cambiar) ── */
   (function () {
-    const btnPresencial  = document.getElementById('btn-presencial');
-    const btnOnline      = document.getElementById('btn-online');
-    const deckPresencial = document.getElementById('deck-presencial');
-    const deckOnline     = document.getElementById('deck-online');
-    const toggleBar      = document.querySelector('.servicio-toggle');
+    const btnPresencial       = document.getElementById('btn-presencial');
+    const btnOnline           = document.getElementById('btn-online');
+    const btnPresencialBottom = document.getElementById('btn-presencial-bottom');
+    const btnOnlineBottom     = document.getElementById('btn-online-bottom');
+    const toggleBottom        = document.getElementById('toggle-bottom');
+    const scrollBtnServicios  = document.getElementById('scroll-btn-servicios');
+    const deckPresencial      = document.getElementById('deck-presencial');
+    const deckOnline          = document.getElementById('deck-online');
+    const toggleBar           = document.querySelector('.servicio-toggle');
 
     if (!btnPresencial || !btnOnline || !deckPresencial || !deckOnline) return;
 
-    let activeDeck     = null;
-    let pendingCleanup = null; // limpia listeners de un scroll anterior si el
-                               // usuario pulsa otro botón antes de que acabe
+    let activeDeck       = null;
+    let pendingCleanup   = null;
+    let bottomBtnTimeout = null;
 
     function resetBtns() {
-      btnPresencial.classList.remove('active');
-      btnOnline.classList.remove('active');
-      btnPresencial.setAttribute('aria-selected', 'false');
-      btnOnline.setAttribute('aria-selected', 'false');
+      [btnPresencial, btnPresencialBottom].forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      [btnOnline, btnOnlineBottom].forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    }
+
+    function syncBottomBtns(which) {
+      if (!which) {
+        // cancelar aparición pendiente si aún no se mostró
+        if (bottomBtnTimeout) { clearTimeout(bottomBtnTimeout); bottomBtnTimeout = null; }
+        // ocultar con fade-out
+        toggleBottom.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        toggleBottom.style.opacity = '0';
+        toggleBottom.style.transform = 'translateY(10px)';
+        scrollBtnServicios.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        scrollBtnServicios.style.opacity = '0';
+        scrollBtnServicios.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+          toggleBottom.style.display = 'none';
+          scrollBtnServicios.style.display = 'none';
+        }, 300);
+      } else {
+        // Preparar ambos elementos ocultos
+        toggleBottom.style.display = 'flex';
+        toggleBottom.style.opacity = '0';
+        toggleBottom.style.transform = 'translateY(10px)';
+        toggleBottom.style.transition = 'none';
+        scrollBtnServicios.style.display = 'flex';
+        scrollBtnServicios.style.opacity = '0';
+        scrollBtnServicios.style.transform = 'translateY(10px)';
+        scrollBtnServicios.style.transition = 'none';
+        if (which === 'presencial') {
+          btnPresencialBottom.classList.add('active');
+          btnOnlineBottom.classList.remove('active');
+        } else {
+          btnOnlineBottom.classList.add('active');
+          btnPresencialBottom.classList.remove('active');
+        }
+        bottomBtnTimeout = setTimeout(() => {
+          bottomBtnTimeout = null;
+          toggleBottom.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          toggleBottom.style.opacity = '1';
+          toggleBottom.style.transform = 'translateY(0)';
+          scrollBtnServicios.style.transition = 'opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s';
+          scrollBtnServicios.style.opacity = '1';
+          scrollBtnServicios.style.transform = 'translateY(0)';
+        }, 1250);
+      }
     }
 
     function closeAll() {
@@ -2906,23 +2984,22 @@
       deckPresencial.classList.remove('open');
       deckOnline.classList.remove('open');
       resetBtns();
+      syncBottomBtns(null);
       activeDeck = null;
     }
 
     function openDeck(which) {
-      // Cancelar cualquier scroll pendiente del clic anterior
       if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
 
       const deck    = which === 'presencial' ? deckPresencial : deckOnline;
       const deckOld = which === 'presencial' ? deckOnline     : deckPresencial;
       const btn     = which === 'presencial' ? btnPresencial  : btnOnline;
-      const btnOld  = which === 'presencial' ? btnOnline      : btnPresencial;
 
-      // Marcar el nuevo botón como activo de inmediato (feedback visual)
       resetBtns();
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
       activeDeck = which;
+      syncBottomBtns(which);
 
       const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
       const scrollDest = Math.max(
@@ -2931,13 +3008,10 @@
       );
 
       function activate() {
-        // Cierra el deck anterior justo antes de abrir el nuevo:
-        // las cartas viejas desaparecen sólo en este momento, no antes
         deckOld.classList.remove('open');
         requestAnimationFrame(() => deck.classList.add('open'));
       }
 
-      // Si ya estamos en el destino, activar directamente sin scroll
       if (Math.abs(window.scrollY - scrollDest) < 5) {
         activate();
         return;
@@ -2955,21 +3029,26 @@
 
       window.addEventListener('scroll', onScroll, { passive: true });
 
-      // Guardar la función de limpieza para poder cancelarla si el usuario
-      // pulsa otro botón antes de que este scroll termine
       pendingCleanup = function () {
         clearTimeout(debounceTimer);
         clearTimeout(fallbackTimer);
         window.removeEventListener('scroll', onScroll);
       };
-
     }
 
+    // Botones superiores
     btnPresencial.addEventListener('click', () => {
       activeDeck === 'presencial' ? closeAll() : openDeck('presencial');
     });
-
     btnOnline.addEventListener('click', () => {
+      activeDeck === 'online' ? closeAll() : openDeck('online');
+    });
+
+    // Botones inferiores (misma lógica)
+    btnPresencialBottom.addEventListener('click', () => {
+      activeDeck === 'presencial' ? closeAll() : openDeck('presencial');
+    });
+    btnOnlineBottom.addEventListener('click', () => {
       activeDeck === 'online' ? closeAll() : openDeck('online');
     });
   })();
