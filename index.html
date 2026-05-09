@@ -1494,31 +1494,52 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 6px;
     transition: all 0.35s cubic-bezier(.4,0,.2,1);
     min-width: 270px;
     text-align: center;
     outline: none;
+    overflow: hidden;
   }
+
+  /* Reflejo interno en el botón */
+  .toggle-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg,
+      rgba(57,224,102,0.06) 0%,
+      transparent 55%);
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .toggle-btn:hover::before,
+  .toggle-btn.active::before { opacity: 1; }
 
   .toggle-btn:hover {
     border-color: rgba(57,224,102,0.65);
     color: var(--blanco);
     box-shadow:
-      0 0 10px rgba(57,224,102,0.2),
-      0 0 22px rgba(57,224,102,0.10);
+      0 0 10px rgba(57,224,102,0.22),
+      0 0 24px rgba(57,224,102,0.10),
+      0 4px 18px rgba(0,0,0,0.4);
     transform: translateY(-2px);
   }
 
   .toggle-btn.active {
-    background: rgba(57,224,102,0.07);
+    background: rgba(57,224,102,0.08);
     border-color: var(--verde);
     color: var(--verde);
+    /* Iluminación posterior fuerte cuando está activo */
     box-shadow:
-      0 0 10px rgba(57,224,102,0.55),
-      0 0 24px rgba(57,224,102,0.25),
-      inset 0 0 14px rgba(57,224,102,0.06);
-    text-shadow: 0 0 10px rgba(57,224,102,0.55);
+      0 0 0 1px rgba(57,224,102,0.25),
+      0 0 12px rgba(57,224,102,0.70),
+      0 0 28px rgba(57,224,102,0.32),
+      0 0 56px rgba(57,224,102,0.14),
+      0 4px 20px rgba(0,0,0,0.45);
+    text-shadow: 0 0 10px rgba(57,224,102,0.65);
     transform: translateY(0);
   }
 
@@ -1526,15 +1547,37 @@
      ── POKER CARDS WRAPPER & DECK ──
      ============================================ */
   .poker-deck-wrapper {
-    overflow: hidden;
+    /* Recorte limpio con clip suave para que las cartas no se corten */
+    overflow: visible;
+    clip-path: inset(0 -40px -60px -40px);
     max-height: 0;
     opacity: 0;
     transition:
       max-height 0.65s cubic-bezier(.4,0,.2,1),
-      opacity 0.4s ease;
+      opacity 0.45s ease;
+    /* Iluminación posterior del panel completo */
+    position: relative;
+  }
+  .poker-deck-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -16px -32px -32px -32px;
+    background: radial-gradient(ellipse 80% 60% at 50% 110%,
+      rgba(57,224,102,0.10) 0%,
+      rgba(57,224,102,0.04) 45%,
+      transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+    border-radius: 0 0 32px 32px;
   }
   .poker-deck-wrapper.open {
     max-height: 5000px;
+    opacity: 1;
+    overflow: visible;
+  }
+  .poker-deck-wrapper.open::before {
     opacity: 1;
   }
 
@@ -1542,25 +1585,29 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    padding: 8px 2px 20px;
+    padding: 8px 2px 36px;
+    position: relative;
+    z-index: 1;
   }
 
   /* ── POKER CARD ── */
   .poker-card {
     position: relative;
-    background: linear-gradient(155deg, #111 0%, #0c0c0c 100%);
-    border: 1.5px solid var(--verde);
+    background: linear-gradient(155deg, #131313 0%, #0b0b0b 100%);
+    border: 1.5px solid rgba(57,224,102,0.65);
     border-radius: 16px;
-    padding: 0;           /* padding managed internally */
+    padding: 0;
     aspect-ratio: 2 / 3;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    /* Iluminación posterior: aura verde controlada + sombra profunda */
     box-shadow:
-      0 0 0 1px rgba(57,224,102,0.12),
-      0 0 12px rgba(57,224,102,0.45),
-      0 0 28px rgba(57,224,102,0.18),
-      0 0 56px rgba(57,224,102,0.07);
+      0 0 0 1px rgba(57,224,102,0.14),
+      0 0 10px rgba(57,224,102,0.55),
+      0 0 24px rgba(57,224,102,0.22),
+      0 0 52px rgba(57,224,102,0.10),
+      0 8px 32px rgba(0,0,0,0.55);
     /* flip-in animation */
     opacity: 0;
     transform: rotateY(-160deg) scale(0.92);
@@ -1583,23 +1630,40 @@
   .poker-deck-wrapper.open .poker-card:nth-child(4) { transition-delay: 0.46s; }
 
   .poker-card:hover {
-    transform: translateY(-7px) scale(1.015);
+    transform: translateY(-9px) scale(1.018);
     box-shadow:
-      0 0 0 1px rgba(57,224,102,0.25),
-      0 0 18px rgba(57,224,102,0.7),
-      0 0 38px rgba(57,224,102,0.30),
-      0 0 70px rgba(57,224,102,0.12);
+      0 0 0 1.5px rgba(57,224,102,0.5),
+      0 0 16px rgba(57,224,102,0.85),
+      0 0 36px rgba(57,224,102,0.40),
+      0 0 72px rgba(57,224,102,0.18),
+      0 12px 40px rgba(0,0,0,0.65);
   }
 
-  /* Inner border inset */
+  /* Inner border inset — radio coincide con card (16px − 5px = 11px) */
   .poker-card::after {
     content: '';
     position: absolute;
     inset: 5px;
-    border: 1px solid rgba(57,224,102,0.09);
+    border: 1px solid rgba(57,224,102,0.13);
     border-radius: 11px;
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* Destello ambiental interior — esquina superior izquierda */
+  .poker-card::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse at 30% 30%,
+      rgba(57,224,102,0.07) 0%,
+      transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
   }
 
   /* ── CARD HEADER BAND (top area with number + suit corner) ── */
@@ -1701,21 +1765,37 @@
   }
   .pc-list.red  li::before { background: #ff2244; box-shadow: 0 0 5px rgba(255,34,68,0.9); }
   .pc-list.green li::before{ background: #39e066; box-shadow: 0 0 5px rgba(57,224,102,0.9); }
-  .pc-list.gold  li::before{ background: #ffe033; box-shadow: 0 0 5px rgba(255,224,51,0.9); }
+  .pc-list.gold li {
+    color: #ffe033;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255,224,51,0.6);
+  }
+  .pc-list.gold  li::before{ background: #ffe033; box-shadow: 0 0 8px rgba(255,224,51,1); }
+
+  /* Título neon para carta 4 */
+  .pc-title.gold-neon {
+    color: #ffe033;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255,224,51,0.8), 0 0 20px rgba(255,224,51,0.6), 0 0 30px rgba(255,224,51,0.4);
+    letter-spacing: 2px;
+  }
 
   .pc-text {
-    font-size: 19px;
+    font-size: 17px;
     line-height: 1.55;
     color: rgba(255,255,255,0.82);
     font-weight: 500;
     margin-bottom: 10px;
     flex: 1;
     text-align: justify;
+    text-justify: inter-word;
+    word-spacing: normal;
+    letter-spacing: 0.02em;
     hyphens: none;
     -webkit-hyphens: none;
     text-align-last: left;
-    overflow-wrap: normal;
-    word-break: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   /* Override inline secondary-text size → 15.5px proporcional */
   .pc-body .pc-text[style*="font-size:12px"],
@@ -1724,33 +1804,50 @@
     line-height: 1.5 !important;
   }
 
+  /* Texto neon para carta 4 */
+  .pc-text-neon {
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6);
+  }
+
+  /* Texto sin justificación */
+  .pc-text-left {
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    font-weight: 500;
+    margin-bottom: 10px;
+    flex: 1;
+    text-align: left;
+    letter-spacing: 0.02em;
+    hyphens: none;
+    -webkit-hyphens: none;
+  }
+
   /* Alto valor badge */
   .pc-badge {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 8.4px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: #ffe033;
-    border: 1px solid rgba(255,224,51,0.5);
-    background: rgba(255,224,51,0.07);
-    padding: 5px 12px 5px 10px;
-    border-radius: 30px;
+    border: 1.2px solid rgba(255,224,51,0.6);
+    background: rgba(255,224,51,0.12);
+    padding: 6px 14.4px 6px 12px;
+    border-radius: 36px;
     width: fit-content;
     margin: 4px auto 10px;
     align-self: center;
-    box-shadow: 0 0 8px rgba(255,224,51,0.35);
+    box-shadow: 0 0 10px rgba(255,224,51,0.5), 0 0 20px rgba(255,224,51,0.3);
+    text-shadow: 0 0 8px rgba(255,224,51,0.4);
   }
   .pc-badge::before {
-    content: '';
-    width: 5px; height: 5px;
-    background: #ffe033;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #ffe033;
-    flex-shrink: 0;
+    content: none;
   }
 
   /* ── SUIT SVG DEFINITIONS (reusable) ── */
@@ -2364,8 +2461,12 @@
         <div class="pc-body">
           <h3 class="pc-title">ENTRENAMIENTO + DIETA</h3>
           <div class="pc-divider red"></div>
-          <p class="pc-text">La combinación perfecta. Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal. Además de la mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
-          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">Incluye todas las ventajas del entrenamiento (1) y de la dieta (2). Es la forma más efectiva de lograr una correcta recuperación según la evidencia científica.</p>
+          <ul class="pc-list red">
+            <li><strong>Combinación de servicios más completa</strong></li>
+            <li>Todas las ventajas del entrenamiento, la dieta y el seguimiento</li>
+            <li>Recomposición corporal y mejora de rango de movimiento ROM</li>
+            <li>Trabajo multidisciplinar óptimo</li>
+          </ul>
         </div>
       </article>
 
@@ -2385,11 +2486,11 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title" style="color:#ffe033; text-shadow: 0 0 8px rgba(255,224,51,0.4);">Soporte continuo</h3>
+          <h3 class="pc-title gold-neon">Soporte continuo</h3>
           <div class="pc-divider gold"></div>
-          <p class="pc-text">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso dentro del horario establecido.</p>
-          <div class="pc-badge">Alto valor</div>
-          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores.</p>
+          <p class="pc-text pc-text-neon">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso dentro del horario establecido.</p>
+          <div class="pc-badge">Bonus de alto valor</div>
+          <p class="pc-text pc-text-neon" style="font-size:12px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
         </div>
       </article>
 
@@ -2501,8 +2602,12 @@
         <div class="pc-body">
           <h3 class="pc-title">ENTRENAMIENTO + DIETA</h3>
           <div class="pc-divider red"></div>
-          <p class="pc-text">La combinación perfecta. Todas las ventajas del entrenamiento y la readaptación lumbar, junto a una dieta antiinflamatoria y recomposición corporal. Además de la mejora de hábitos para lograr la rehabilitación lumbar completa.</p>
-          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">Incluye todas las ventajas del entrenamiento (1) y de la dieta (2). Es la forma más efectiva de lograr una correcta recuperación según la evidencia científica.</p>
+          <ul class="pc-list red">
+            <li><strong>Combinación de servicios más completa</strong></li>
+            <li>Todas las ventajas del entrenamiento, la dieta y el seguimiento</li>
+            <li>Recomposición corporal y mejora de rango de movimiento ROM</li>
+            <li>Trabajo multidisciplinar óptimo</li>
+          </ul>
         </div>
       </article>
 
@@ -2522,11 +2627,11 @@
           </div>
         </div>
         <div class="pc-body">
-          <h3 class="pc-title" style="color:#ffe033; text-shadow: 0 0 8px rgba(255,224,51,0.4);">Soporte continuo</h3>
+          <h3 class="pc-title gold-neon">Soporte continuo</h3>
           <div class="pc-divider gold"></div>
-          <p class="pc-text">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso dentro del horario establecido.</p>
-          <div class="pc-badge">Alto valor</div>
-          <p class="pc-text" style="font-size:12px; color:rgba(255,255,255,0.55);">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores.</p>
+          <p class="pc-text pc-text-neon">Comunicación cercana y seguimiento constante para resolver dudas, mantener la motivación y acompañarte durante todo el proceso dentro del horario establecido.</p>
+          <div class="pc-badge">Bonus de alto valor</div>
+          <p class="pc-text pc-text-neon" style="font-size:12px;">La parte de mayor valor del servicio. Seré esa persona de confianza que te acompañará hasta que consigas tu meta y te plantees otras mayores. Bonus incluido en los servicios 1, 2 y 3.</p>
         </div>
       </article>
 
@@ -2746,61 +2851,97 @@
 </script>
 
 <script>
-  /* ── Toggle Presencial / Online (cards flip) ── */
+  /* ── Toggle Presencial / Online (un solo scroll, sin parpadeo al cambiar) ── */
   (function () {
-    const btnPresencial = document.getElementById('btn-presencial');
-    const btnOnline     = document.getElementById('btn-online');
+    const btnPresencial  = document.getElementById('btn-presencial');
+    const btnOnline      = document.getElementById('btn-online');
     const deckPresencial = document.getElementById('deck-presencial');
     const deckOnline     = document.getElementById('deck-online');
+    const toggleBar      = document.querySelector('.servicio-toggle');
 
     if (!btnPresencial || !btnOnline || !deckPresencial || !deckOnline) return;
 
-    let activeDeck = null; // 'presencial' | 'online' | null
+    let activeDeck     = null;
+    let pendingCleanup = null; // limpia listeners de un scroll anterior si el
+                               // usuario pulsa otro botón antes de que acabe
 
-    function closeAll() {
-      deckPresencial.classList.remove('open');
-      deckOnline.classList.remove('open');
+    function resetBtns() {
       btnPresencial.classList.remove('active');
       btnOnline.classList.remove('active');
       btnPresencial.setAttribute('aria-selected', 'false');
       btnOnline.setAttribute('aria-selected', 'false');
+    }
+
+    function closeAll() {
+      if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
+      deckPresencial.classList.remove('open');
+      deckOnline.classList.remove('open');
+      resetBtns();
       activeDeck = null;
     }
 
     function openDeck(which) {
-      // Close any currently open deck first so the cards reset and re-flip
-      closeAll();
+      // Cancelar cualquier scroll pendiente del clic anterior
+      if (pendingCleanup) { pendingCleanup(); pendingCleanup = null; }
 
-      // Slight delay so the close → open feels distinct (cards re-flip cleanly)
-      requestAnimationFrame(() => {
-        if (which === 'presencial') {
-          deckPresencial.classList.add('open');
-          btnPresencial.classList.add('active');
-          btnPresencial.setAttribute('aria-selected', 'true');
-          activeDeck = 'presencial';
-        } else if (which === 'online') {
-          deckOnline.classList.add('open');
-          btnOnline.classList.add('active');
-          btnOnline.setAttribute('aria-selected', 'true');
-          activeDeck = 'online';
-        }
-      });
+      const deck    = which === 'presencial' ? deckPresencial : deckOnline;
+      const deckOld = which === 'presencial' ? deckOnline     : deckPresencial;
+      const btn     = which === 'presencial' ? btnPresencial  : btnOnline;
+      const btnOld  = which === 'presencial' ? btnOnline      : btnPresencial;
+
+      // Marcar el nuevo botón como activo de inmediato (feedback visual)
+      resetBtns();
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      activeDeck = which;
+
+      const navH = (document.querySelector('nav') || { offsetHeight: 72 }).offsetHeight;
+      const scrollDest = Math.max(
+        0,
+        toggleBar.getBoundingClientRect().top + window.scrollY - navH - 20
+      );
+
+      function activate() {
+        // Cierra el deck anterior justo antes de abrir el nuevo:
+        // las cartas viejas desaparecen sólo en este momento, no antes
+        deckOld.classList.remove('open');
+        requestAnimationFrame(() => deck.classList.add('open'));
+      }
+
+      // Si ya estamos en el destino, activar directamente sin scroll
+      if (Math.abs(window.scrollY - scrollDest) < 5) {
+        activate();
+        return;
+      }
+
+      window.scrollTo({ top: scrollDest, behavior: 'smooth' });
+
+      let debounceTimer  = null;
+      const fallbackTimer = setTimeout(activate, 900);
+
+      function onScroll() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(activate, 80);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Guardar la función de limpieza para poder cancelarla si el usuario
+      // pulsa otro botón antes de que este scroll termine
+      pendingCleanup = function () {
+        clearTimeout(debounceTimer);
+        clearTimeout(fallbackTimer);
+        window.removeEventListener('scroll', onScroll);
+      };
+
     }
 
     btnPresencial.addEventListener('click', () => {
-      if (activeDeck === 'presencial') {
-        closeAll();
-      } else {
-        openDeck('presencial');
-      }
+      activeDeck === 'presencial' ? closeAll() : openDeck('presencial');
     });
 
     btnOnline.addEventListener('click', () => {
-      if (activeDeck === 'online') {
-        closeAll();
-      } else {
-        openDeck('online');
-      }
+      activeDeck === 'online' ? closeAll() : openDeck('online');
     });
   })();
 </script>
