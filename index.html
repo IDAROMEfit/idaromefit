@@ -948,18 +948,12 @@
   }
 
   .sobre-badge:hover,
-  .sobre-badge:active,
-  .sobre-badge.scroll-glow {
+  .sobre-badge:active {
     background: var(--verde);
     color: var(--negro);
     border-color: var(--verde);
     box-shadow: 0 0 28px rgba(57,224,102,0.55), 0 0 60px rgba(57,224,102,0.25);
     transform: scale(1.06);
-  }
-
-  .sobre-badge.scroll-glow .badge-medal {
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.4));
-    transform: scale(1.1);
   }
 
   .sobre-badge .badge-medal {
@@ -3436,19 +3430,9 @@
 </script>
 
 <script>
-  /* ── Badge "Máxima Calidad" se ilumina solo mientras el usuario hace scroll ── */
-  (function () {
-    const badge = document.querySelector('.sobre-badge');
-    if (!badge) return;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function () {
-      badge.classList.add('scroll-glow');
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function () {
-        badge.classList.remove('scroll-glow');
-      }, 300);
-    }, { passive: true });
-  })();
+  /* ── Badge "Máxima Calidad": el glow se activa solo con :hover / :active.
+     Se eliminó el listener de scroll porque provocaba parpadeo del texto
+     y un re-escalado constante de la caja al hacer scroll. ── */
 </script>
 
 </body>
