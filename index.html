@@ -3412,9 +3412,44 @@
 </script>
 
 <script>
-  /* ── Badge "Máxima Calidad": el glow se activa solo con :hover / :active.
-     Se eliminó el listener de scroll porque provocaba parpadeo del texto
-     y un re-escalado constante de la caja al hacer scroll. ── */
+  /* ── Badge "Máxima Calidad": glow activado por IntersectionObserver.
+     Se usa IntersectionObserver en lugar de un listener de scroll para
+     evitar parpadeos y re-escalados continuos. El efecto se aplica
+     suavemente cuando el badge entra en el viewport. ── */
+  (function () {
+    var badge = document.querySelector('.sobre-badge');
+    if (!badge) return;
+
+    /* Clase CSS que replica el estado :hover sin afectar el texto */
+    var style = document.createElement('style');
+    style.textContent = [
+      '.sobre-badge.badge--glow {',
+      '  background: var(--verde);',
+      '  color: var(--negro);',
+      '  border-color: var(--verde);',
+      '  box-shadow: 0 0 28px rgba(57,224,102,0.55), 0 0 60px rgba(57,224,102,0.25);',
+      '  transform: scale(1.06);',
+      '}',
+      '.sobre-badge.badge--glow .badge-medal {',
+      '  filter: drop-shadow(0 0 10px rgba(0,0,0,0.4));',
+      '  transform: scale(1.1);',
+      '}'
+    ].join('\n');
+    document.head.appendChild(style);
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          /* Pequeño retardo para que la animación se aprecie al hacer scroll */
+          setTimeout(function () { badge.classList.add('badge--glow'); }, 150);
+        } else {
+          badge.classList.remove('badge--glow');
+        }
+      });
+    }, { threshold: 0.6 }); /* Se activa cuando el 60 % del badge es visible */
+
+    observer.observe(badge);
+  })();
 </script>
 
 </body>
