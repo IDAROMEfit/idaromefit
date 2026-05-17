@@ -145,9 +145,12 @@
   .nav-cta {
     background: var(--verde);
     color: var(--negro) !important;
-    padding: 10px 22px;
+    padding: 8px 16px;
     border-radius: 4px;
     font-weight: 700 !important;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
     text-decoration: none !important;
     transition: background 0.2s, transform 0.2s !important;
   }
@@ -2059,6 +2062,25 @@
     nav { padding: 0 32px; }
     .hero { padding: 72px 48px 48px; }
     .hero h1 { font-size: clamp(48px, 6vw, 72px); }
+  }
+
+  /* ─── TABLETS 9–10" HORIZONTAL (iPad landscape, 1025–1280px) ─── */
+  /* Evita que el menú se solape con el botón verde de Contacto */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    nav { padding: 0 20px; }
+    .nav-logo-img img { height: 40px !important; }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.3px; }
+    .nav-right { gap: 12px !important; }
+    .nav-social { gap: 10px; }
+    .nav-social a svg { width: 16px; height: 16px; }
+    .nav-divider { height: 16px; }
+    .nav-cta {
+      padding: 6px 12px;
+      font-size: 11px;
+      letter-spacing: 0.2px;
+    }
+    .lang-switcher .lang-btn { padding: 4px 8px; font-size: 11px; }
   }
 
   /* Móviles grandes (641px a 767px) */
