@@ -2737,16 +2737,58 @@
       </button>
       <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English">
         <svg width="18" height="13" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="18" height="13" fill="#b22234"/>
-          <g fill="#ffffff">
-            <rect y="1" width="18" height="1"/>
-            <rect y="3" width="18" height="1"/>
-            <rect y="5" width="18" height="1"/>
-            <rect y="7" width="18" height="1"/>
-            <rect y="9" width="18" height="1"/>
-            <rect y="11" width="18" height="1"/>
+          <defs>
+            <!-- USA ocupa la mitad superior-izquierda; UK la mitad inferior-derecha.
+                 Diagonal de (0,13) inferior-izquierda a (18,0) superior-derecha. -->
+            <clipPath id="usHalfNav"><polygon points="0,0 18,0 0,13"/></clipPath>
+            <clipPath id="ukHalfNav"><polygon points="18,0 18,13 0,13"/></clipPath>
+          </defs>
+
+          <!-- ── Mitad superior-izquierda: Estados Unidos (Stars & Stripes) ── -->
+          <g clip-path="url(#usHalfNav)">
+            <rect width="18" height="13" fill="#b22234"/>
+            <!-- Franjas blancas (alternadas con el rojo de fondo) -->
+            <g fill="#ffffff">
+              <rect y="1" width="18" height="1"/>
+              <rect y="3" width="18" height="1"/>
+              <rect y="5" width="18" height="1"/>
+              <rect y="7" width="18" height="1"/>
+              <rect y="9" width="18" height="1"/>
+              <rect y="11" width="18" height="1"/>
+            </g>
+            <!-- Canton azul en su posición canónica (arriba-izquierda) -->
+            <rect width="7.5" height="7" fill="#3c3b6e"/>
+            <!-- Estrellas simplificadas en el canton (puntos blancos en rejilla) -->
+            <g fill="#ffffff">
+              <circle cx="1.5" cy="1.5" r="0.45"/>
+              <circle cx="3.5" cy="1.5" r="0.45"/>
+              <circle cx="5.5" cy="1.5" r="0.45"/>
+              <circle cx="2.5" cy="3" r="0.45"/>
+              <circle cx="4.5" cy="3" r="0.45"/>
+              <circle cx="6.5" cy="3" r="0.45"/>
+              <circle cx="1.5" cy="4.5" r="0.45"/>
+              <circle cx="3.5" cy="4.5" r="0.45"/>
+              <circle cx="5.5" cy="4.5" r="0.45"/>
+              <circle cx="2.5" cy="6" r="0.45"/>
+              <circle cx="4.5" cy="6" r="0.45"/>
+              <circle cx="6.5" cy="6" r="0.45"/>
+            </g>
           </g>
-          <rect width="7.5" height="7" fill="#3c3b6e"/>
+
+          <!-- ── Mitad inferior-derecha: Reino Unido (Union Jack) ── -->
+          <g clip-path="url(#ukHalfNav)">
+            <rect width="18" height="13" fill="#012169"/>
+            <!-- Saltire blanco (diagonales) -->
+            <path d="M0,0 L18,13 M18,0 L0,13" stroke="#ffffff" stroke-width="2.6"/>
+            <!-- Saltire rojo de San Patricio (más fino, sobre el blanco) -->
+            <path d="M0,0 L18,13 M18,0 L0,13" stroke="#C8102E" stroke-width="1"/>
+            <!-- Cruz de San Jorge: fondo blanco + rojo encima -->
+            <path d="M9,0 V13 M0,6.5 H18" stroke="#ffffff" stroke-width="3"/>
+            <path d="M9,0 V13 M0,6.5 H18" stroke="#C8102E" stroke-width="1.8"/>
+          </g>
+
+          <!-- Línea diagonal de separación entre las dos banderas -->
+          <line x1="0" y1="13" x2="18" y2="0" stroke="#ffffff" stroke-width="0.45" stroke-linecap="round"/>
         </svg>
         <span>EN</span>
       </button>
@@ -2802,16 +2844,52 @@
       </button>
       <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English">
         <svg width="22" height="16" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="18" height="13" fill="#b22234"/>
-          <g fill="#ffffff">
-            <rect y="1" width="18" height="1"/>
-            <rect y="3" width="18" height="1"/>
-            <rect y="5" width="18" height="1"/>
-            <rect y="7" width="18" height="1"/>
-            <rect y="9" width="18" height="1"/>
-            <rect y="11" width="18" height="1"/>
+          <defs>
+            <!-- USA ocupa la mitad superior-izquierda; UK la mitad inferior-derecha.
+                 Diagonal de (0,13) inferior-izquierda a (18,0) superior-derecha. -->
+            <clipPath id="usHalfMob"><polygon points="0,0 18,0 0,13"/></clipPath>
+            <clipPath id="ukHalfMob"><polygon points="18,0 18,13 0,13"/></clipPath>
+          </defs>
+
+          <!-- ── Mitad superior-izquierda: Estados Unidos (Stars & Stripes) ── -->
+          <g clip-path="url(#usHalfMob)">
+            <rect width="18" height="13" fill="#b22234"/>
+            <g fill="#ffffff">
+              <rect y="1" width="18" height="1"/>
+              <rect y="3" width="18" height="1"/>
+              <rect y="5" width="18" height="1"/>
+              <rect y="7" width="18" height="1"/>
+              <rect y="9" width="18" height="1"/>
+              <rect y="11" width="18" height="1"/>
+            </g>
+            <rect width="7.5" height="7" fill="#3c3b6e"/>
+            <g fill="#ffffff">
+              <circle cx="1.5" cy="1.5" r="0.45"/>
+              <circle cx="3.5" cy="1.5" r="0.45"/>
+              <circle cx="5.5" cy="1.5" r="0.45"/>
+              <circle cx="2.5" cy="3" r="0.45"/>
+              <circle cx="4.5" cy="3" r="0.45"/>
+              <circle cx="6.5" cy="3" r="0.45"/>
+              <circle cx="1.5" cy="4.5" r="0.45"/>
+              <circle cx="3.5" cy="4.5" r="0.45"/>
+              <circle cx="5.5" cy="4.5" r="0.45"/>
+              <circle cx="2.5" cy="6" r="0.45"/>
+              <circle cx="4.5" cy="6" r="0.45"/>
+              <circle cx="6.5" cy="6" r="0.45"/>
+            </g>
           </g>
-          <rect width="7.5" height="7" fill="#3c3b6e"/>
+
+          <!-- ── Mitad inferior-derecha: Reino Unido (Union Jack) ── -->
+          <g clip-path="url(#ukHalfMob)">
+            <rect width="18" height="13" fill="#012169"/>
+            <path d="M0,0 L18,13 M18,0 L0,13" stroke="#ffffff" stroke-width="2.6"/>
+            <path d="M0,0 L18,13 M18,0 L0,13" stroke="#C8102E" stroke-width="1"/>
+            <path d="M9,0 V13 M0,6.5 H18" stroke="#ffffff" stroke-width="3"/>
+            <path d="M9,0 V13 M0,6.5 H18" stroke="#C8102E" stroke-width="1.8"/>
+          </g>
+
+          <!-- Línea diagonal de separación -->
+          <line x1="0" y1="13" x2="18" y2="0" stroke="#ffffff" stroke-width="0.45" stroke-linecap="round"/>
         </svg>
         <span>ENGLISH</span>
       </button>
