@@ -1,10 +1,12 @@
 <!-- ============================================================
-     IDAROME FIT · Formulario multipaso (versión embebible)
+     IDAROME FIT - Formulario multipaso (versión embebible)
      Pega este bloque completo en Elementor (widget HTML) o en
      un snippet HTML de WordPress. Incluye estilos y scripts.
      Email de destino: info@idaromefit.com
      ============================================================ -->
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/idayan2012/idaromefit/refs/heads/main/idarome-image-logo-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +14,7 @@
 
 <style>
 /* ============================================================
-   IDAROME FIT · Formulario multipaso
+   IDAROME FIT - Formulario multipaso
    Estética idéntica a idaromefit.com
    ============================================================ */
 
@@ -54,7 +56,7 @@ body{
 
 a,button,input,select,label{ touch-action:manipulation; }
 
-/* ── Fondo ambiental con glow verde ── */
+/* -- Fondo ambiental con glow verde -- */
 .bg-glow{
   position:fixed; inset:0; z-index:0; pointer-events:none;
   background:
@@ -62,7 +64,7 @@ a,button,input,select,label{ touch-action:manipulation; }
     radial-gradient(ellipse 60% 50% at 80% 100%, rgba(57,224,102,.06) 0%, transparent 55%);
 }
 
-/* ── Contenedor principal ── */
+/* -- Contenedor principal -- */
 .form-shell{
   position:relative; z-index:1;
   width:100%; max-width:680px;
@@ -80,23 +82,29 @@ a,button,input,select,label{ touch-action:manipulation; }
 }
 @keyframes shellIn{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:none;} }
 
-/* ── Cabecera ── */
+/* -- Cabecera -- */
 .form-head{ text-align:center; margin-bottom:28px; margin-top:0; }
 .brand-wrap{
-  margin-left:calc(-1 * clamp(24px,5vw,48px));
-  margin-right:calc(-1 * clamp(24px,5vw,48px));
+  margin-left:0;
+  margin-right:0;
   margin-top:0;
   border-radius:14px 14px 0 0;
-  overflow:visible;
+  overflow:hidden;
   line-height:0;
-  padding-top:0;
+  padding:32px 24px 12px;
+  background:linear-gradient(160deg, #141414 0%, #0e0e0e 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 .brand-img{
-  width:100%; height:auto;
+  width:auto;
+  max-width:min(260px, 65%);
+  height:auto;
+  max-height:100px;
   display:block;
   mix-blend-mode:lighten;
-  padding-top:32px;
-  background:linear-gradient(160deg, #141414 0%, #0e0e0e 100%);
+  object-fit:contain;
 }
 .head-tag{
   display:inline-block; margin-top:16px;
@@ -108,7 +116,7 @@ a,button,input,select,label{ touch-action:manipulation; }
   padding:7px 18px; border-radius:100px;
 }
 
-/* ── Barra de progreso ── */
+/* -- Barra de progreso -- */
 .progress-wrap{ margin-bottom:30px; }
 .progress-meta{
   display:flex; justify-content:space-between;
@@ -131,7 +139,7 @@ a,button,input,select,label{ touch-action:manipulation; }
   transition:width .5s cubic-bezier(.4,0,.2,1);
 }
 
-/* ── Pasos ── */
+/* -- Pasos -- */
 .step{ display:none; }
 .step.is-active{ display:block; animation:stepIn .45s ease both; }
 @keyframes stepIn{ from{opacity:0; transform:translateX(24px);} to{opacity:1; transform:none;} }
@@ -149,7 +157,7 @@ a,button,input,select,label{ touch-action:manipulation; }
 }
 .req{ color:var(--verde); }
 
-/* ── Layout de campos ── */
+/* -- Layout de campos -- */
 .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
 .field{ margin-bottom:18px; }
@@ -158,7 +166,7 @@ a,button,input,select,label{ touch-action:manipulation; }
   letter-spacing:.3px; margin-bottom:7px; color:var(--blanco-suave);
 }
 
-/* ── Inputs y selects ── */
+/* -- Inputs y selects -- */
 input[type=text],input[type=email],input[type=tel],select{
   width:100%;
   background:var(--negro2);
@@ -166,7 +174,7 @@ input[type=text],input[type=email],input[type=tel],select{
   border-radius:var(--radio);
   color:var(--blanco);
   font-family:'Barlow',sans-serif;
-  font-size:15px;
+  font-size:16px;
   padding:14px 16px;
   transition:border-color .2s, box-shadow .2s, background .2s;
 }
@@ -188,7 +196,7 @@ input.invalid,select.invalid{
   box-shadow:0 0 0 3px rgba(255,77,77,.12);
 }
 
-/* ── Mensajes de error ── */
+/* -- Mensajes de error -- */
 .error{
   display:block; color:#ff6161; font-size:13px;
   font-weight:600; margin-top:6px; min-height:0;
@@ -197,7 +205,7 @@ input.invalid,select.invalid{
 }
 .error.show{ opacity:1; transform:none; }
 
-/* ── Chips (radio: sexo, deporte, servicio) ── */
+/* -- Chips (radio: sexo, deporte, servicio) -- */
 .choice-row{ display:flex; gap:12px; }
 .choice-row.wrap{ flex-wrap:wrap; }
 .chip{ position:relative; flex:1; min-width:90px; cursor:pointer; }
@@ -207,7 +215,7 @@ input.invalid,select.invalid{
   background:var(--gris-oscuro);
   border:1.5px solid var(--gris-borde);
   border-radius:var(--radio);
-  padding:14px 16px; font-weight:600; font-size:15px;
+  padding:14px 16px; font-weight:600; font-size:16px;
   transition:all .2s;
 }
 .chip:hover span{ border-color:rgba(57,224,102,.5); }
@@ -218,7 +226,7 @@ input.invalid,select.invalid{
 }
 .chip input:focus-visible + span{ outline:2px solid var(--verde); outline-offset:2px; }
 
-/* ── Tarjetas de checkbox (objetivos) ── */
+/* -- Tarjetas de checkbox (objetivos) -- */
 .check-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .check-card{ position:relative; cursor:pointer; }
 .check-card input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
@@ -228,7 +236,7 @@ input.invalid,select.invalid{
   border:1.5px solid var(--gris-borde);
   border-left:3px solid var(--gris-borde);
   border-radius:var(--radio);
-  padding:14px 16px; font-size:14.5px; font-weight:500;
+  padding:14px 16px; font-size:15px; font-weight:500;
   height:100%; transition:all .2s;
 }
 .check-card span::before{
@@ -248,7 +256,7 @@ input.invalid,select.invalid{
 }
 .check-card input:focus-visible + span{ outline:2px solid var(--verde); outline-offset:2px; }
 
-/* ── Rating 1-5 ── */
+/* -- Rating 1-5 -- */
 .rating{ display:flex; gap:10px; }
 .rate{ position:relative; flex:1; cursor:pointer; }
 .rate input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
@@ -269,7 +277,7 @@ input.invalid,select.invalid{
 }
 .rate input:focus-visible + span{ outline:2px solid var(--verde); outline-offset:2px; }
 
-/* ── Acciones / botones ── */
+/* -- Acciones / botones -- */
 .step-actions{
   display:flex; justify-content:space-between; align-items:center;
   gap:14px; margin-top:28px;
@@ -308,7 +316,7 @@ input.invalid,select.invalid{
 /* Honeypot */
 .honeypot{ position:absolute !important; left:-9999px !important; width:1px; height:1px; opacity:0; }
 
-/* ── Pantalla de gracias ── */
+/* -- Pantalla de gracias -- */
 .thanks{ text-align:center; padding:30px 10px; animation:stepIn .5s ease both; }
 .thanks h2{ font-family:'Bebas Neue',sans-serif; font-size:56px; letter-spacing:2px; margin:14px 0 8px; }
 .thanks p{ color:rgba(255,255,255,.7); font-size:16px; margin-bottom:28px; }
@@ -318,27 +326,60 @@ input.invalid,select.invalid{
 @keyframes drawC{ to{ stroke-dashoffset:0; } }
 @keyframes drawP{ to{ stroke-dashoffset:0; } }
 
-/* ── Pie ── */
+/* -- Pie -- */
 .form-foot{
   text-align:center; margin-top:26px;
   font-family:'Barlow Condensed',sans-serif;
   letter-spacing:1px; font-size:12px; color:#555;
 }
 
-/* ── Responsive ── */
-@media (max-width:560px){
-  .grid-2{ grid-template-columns:1fr; }
-  .check-grid{ grid-template-columns:1fr; }
-  .step-actions{ flex-direction:row; }
-  .btn-primary,.btn-secondary{ padding:14px 22px; font-size:14px; }
-  .rating{ gap:7px; }
-  .rate span{ font-size:20px; }
-}
-@media (max-width:360px){
-  .choice-row{ flex-direction:column; }
+/* -- Responsive - iPad 11" (834px) -- */
+@media (min-width:768px){
+  .form-shell{ max-width:640px; }
+  .brand-img{ max-width:240px; max-height:90px; }
+  .check-grid{ grid-template-columns:1fr 1fr; }
 }
 
-/* ── Accesibilidad: reduce motion ── */
+/* -- Responsive - iPhone 16 Pro Max (430px) -- */
+@media (max-width:480px){
+  body{ padding:12px; }
+  .form-shell{ border-radius:12px; padding:clamp(16px,4vw,28px); padding-top:0; }
+  .brand-wrap{ padding:24px 16px 10px; border-radius:12px 12px 0 0; }
+  .brand-img{ max-width:200px; max-height:80px; }
+  .grid-2{ grid-template-columns:1fr; }
+  .check-grid{ grid-template-columns:1fr; }
+  .btn-primary,.btn-secondary{ padding:14px 20px; font-size:14px; }
+  .rating{ gap:6px; }
+  .rate span{ font-size:20px; }
+  .step-title{ font-size:clamp(26px,7vw,38px); }
+  .grid-3{ gap:8px; }
+}
+
+/* -- Responsive - iPhone 7 / XS (375px) -- */
+@media (max-width:390px){
+  body{ padding:8px; }
+  .form-shell{ border-radius:10px; padding:clamp(14px,4vw,22px); padding-top:0; }
+  .brand-wrap{ padding:20px 14px 8px; }
+  .brand-img{ max-width:180px; max-height:70px; }
+  .step-title{ font-size:clamp(24px,7vw,34px); }
+  .head-tag{ font-size:11px; padding:6px 14px; }
+  .chip span{ padding:12px 10px; font-size:14px; }
+  .check-card span{ font-size:13.5px; padding:12px 12px; }
+  .rating{ gap:5px; }
+  .rate span{ font-size:18px; }
+  .btn-primary,.btn-secondary{ padding:13px 16px; font-size:13px; letter-spacing:.5px; }
+  .step-actions{ gap:10px; }
+  input[type=text],input[type=email],input[type=tel],select{ font-size:16px; }
+}
+
+/* -- Teléfonos muy pequeños (<360px) -- */
+@media (max-width:360px){
+  .choice-row{ flex-wrap:wrap; }
+  .chip{ flex:1 1 calc(50% - 6px); min-width:80px; }
+  .grid-3{ grid-template-columns:1fr 1fr 1fr; gap:6px; }
+}
+
+/* -- Accesibilidad: reduce motion -- */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
@@ -372,7 +413,7 @@ input.invalid,select.invalid{
   <!-- FORMULARIO -->
   <form id="idaromeForm" novalidate autocomplete="on">
 
-    <!-- ============ PASO 1 · DATOS PERSONALES ============ -->
+    <!-- ============ PASO 1 - DATOS PERSONALES ============ -->
     <section class="step is-active" data-step="1" aria-labelledby="t-step1">
       <h2 class="step-title" id="t-step1">Datos personales</h2>
       <p class="step-desc">Cuéntame quién eres para poder atenderte mejor.</p>
@@ -445,7 +486,7 @@ input.invalid,select.invalid{
       </div>
     </section>
 
-    <!-- ============ PASO 2 · OBJETIVOS ============ -->
+    <!-- ============ PASO 2 - OBJETIVOS ============ -->
     <section class="step" data-step="2" aria-labelledby="t-step2">
       <h2 class="step-title" id="t-step2">Tus objetivos</h2>
       <p class="step-desc">Indica cuál es tu objetivo (puedes seleccionar varias opciones). <span class="req">*</span></p>
@@ -470,7 +511,7 @@ input.invalid,select.invalid{
       </div>
     </section>
 
-    <!-- ============ PASO 3 · DEPORTE ============ -->
+    <!-- ============ PASO 3 - DEPORTE ============ -->
     <section class="step" data-step="3" aria-labelledby="t-step3">
       <h2 class="step-title" id="t-step3">Deporte y actividad</h2>
       <p class="step-desc">Hablemos de tu relación con el ejercicio.</p>
@@ -500,7 +541,7 @@ input.invalid,select.invalid{
       </div>
     </section>
 
-    <!-- ============ PASO 4 · SERVICIO + MOTIVACIÓN ============ -->
+    <!-- ============ PASO 4 - SERVICIO + MOTIVACIÓN ============ -->
     <section class="step" data-step="4" aria-labelledby="t-step4">
       <h2 class="step-title" id="t-step4">Ya casi lo tenemos</h2>
       <p class="step-desc">Solo un par de detalles más para empezar.</p>
@@ -554,12 +595,12 @@ input.invalid,select.invalid{
     <a class="btn-primary" href="https://idaromefit.com">Volver a la web</a>
   </section>
 
-  <p class="form-foot"><a href="https://www.idaromefit.com" target="_blank" rel="noopener" style="color:var(--verde);text-decoration:none;font-weight:700;">WWW.IDAROMEFIT.COM</a> · ENTRENADOR &amp; TSD · ESPECIALISTA EN SALUD LUMBAR<br>© <span id="year"></span> TODOS LOS DERECHOS RESERVADOS. / ALL RIGHTS RESERVED.</p>
+  <p class="form-foot"><a href="https://www.idaromefit.com" target="_blank" rel="noopener" style="color:var(--verde);text-decoration:none;font-weight:700;">WWW.IDAROMEFIT.COM</a> - ENTRENADOR &amp; TSD - ESPECIALISTA EN SALUD LUMBAR<br>© <span id="year"></span> TODOS LOS DERECHOS RESERVADOS. / ALL RIGHTS RESERVED.</p>
 </main>
 
 <script>
 /* ============================================================
-   IDAROME FIT · Lógica del formulario multipaso
+   IDAROME FIT - Lógica del formulario multipaso
    ============================================================ */
 (function () {
   'use strict';
@@ -758,7 +799,7 @@ input.invalid,select.invalid{
     data.append('Objetivos', objetivos);
 
     // Campos de configuración para FormSubmit
-    data.append('_subject', 'Nuevo contacto IDAROME FIT · ' + (data.get('nombre') || ''));
+    data.append('_subject', 'Nuevo contacto IDAROME FIT - ' + (data.get('nombre') || ''));
     data.append('_template', 'table');
     data.append('_captcha', 'false');
     data.append('_next', window.location.href);
