@@ -4173,20 +4173,8 @@
       });
     });
 
-    // Initial language: stored > browser > es
-    let initial = 'es';
-    try {
-      const saved = localStorage.getItem('idaromefit_lang');
-      if (saved === 'es' || saved === 'en') {
-        initial = saved;
-      } else if (navigator.language && navigator.language.toLowerCase().indexOf('es') !== 0) {
-        // Default English for non-Spanish browsers; keep ES for Spanish-speaking users by default
-        // Comment the next line out if you'd rather always start in ES.
-        // initial = 'en';
-      }
-    } catch (e) {}
-
-    applyLang(initial);
+    // Siempre inicia en español por defecto
+    applyLang('es');
   })();
 </script>
 
