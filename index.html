@@ -1071,16 +1071,16 @@
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 2px solid #39e066;
-    background: rgba(57,224,102,0.07);
+    border: 2px solid #b6ffce;
+    background: rgba(57,224,102,0.15);
     flex-shrink: 0;
     position: relative;
     box-shadow:
-      0 0 6px #39e066,
-      0 0 18px rgba(57,224,102,0.55),
-      0 0 36px rgba(57,224,102,0.25),
-      inset 0 0 10px rgba(57,224,102,0.12);
-    animation: neonCheckPulse 2.8s ease-in-out infinite;
+      0 0 10px #fff,
+      0 0 20px #39e066,
+      0 0 40px rgba(57,224,102,0.9),
+      0 0 70px rgba(57,224,102,0.45),
+      inset 0 0 18px rgba(57,224,102,0.28);
   }
 
   /* SVG check dentro del círculo */
@@ -1099,33 +1099,6 @@
     stroke-width: 2.8;
     stroke-linecap: round;
     stroke-linejoin: round;
-  }
-
-  /* Pulso escalonado entre los 3 checks */
-  .credencial:nth-child(1) .neon-check { animation-delay: 0s; }
-  .credencial:nth-child(2) .neon-check { animation-delay: 0.9s; }
-  .credencial:nth-child(3) .neon-check { animation-delay: 1.8s; }
-
-  @keyframes neonCheckPulse {
-    0%, 100% {
-      border-color: #39e066;
-      background: rgba(57,224,102,0.07);
-      box-shadow:
-        0 0 6px #39e066,
-        0 0 18px rgba(57,224,102,0.55),
-        0 0 36px rgba(57,224,102,0.25),
-        inset 0 0 10px rgba(57,224,102,0.12);
-    }
-    50% {
-      border-color: #b6ffce;
-      background: rgba(57,224,102,0.15);
-      box-shadow:
-        0 0 10px #fff,
-        0 0 20px #39e066,
-        0 0 40px rgba(57,224,102,0.9),
-        0 0 70px rgba(57,224,102,0.45),
-        inset 0 0 18px rgba(57,224,102,0.28);
-    }
   }
 
   .credencial-text {
@@ -1562,6 +1535,27 @@
         0 0 40px rgba(255,200,0,0.5);
       opacity: 1;
     }
+  }
+
+  /* Texto amarillo neón con misma tipografía que "ELIGE UNA OPCIÓN" — bullets fijos (sin parpadeo) */
+  .neon-amber {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #ffd633;
+    text-shadow:
+      0 0 4px rgba(255,214,51,0.55),
+      0 0 9px rgba(255,200,0,0.3);
+  }
+
+  /* Variante del texto de "primera consulta": mismo neón animado pero un 20% más grande */
+  .neon-amber-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #ffd633;
+    font-size: 1.2em;
+    text-shadow:
+      0 0 6px rgba(255,214,51,0.85),
+      0 0 14px rgba(255,214,51,0.55),
+      0 0 28px rgba(255,200,0,0.35);
+    animation: eligeGlow 2.4s ease-in-out infinite;
   }
 
   .toggle-btn {
@@ -2985,10 +2979,10 @@
       ¡Hola! Soy Idayán, Entrenador Personal especializado en salud lumbar y Técnico Superior en Dietética. Mi propósito es ayudarte a ganar calidad de vida mediante un método individualizado que une el ejercicio físico y la nutrición para que, de una vez por todas, superes tus limitaciones y vuelvas a moverte con confianza.<br><br>
       Vivir con dolor de espalda condiciona cada minuto de tu día. Por eso, he centrado mi práctica en el acondicionamiento físico orientado a salud lumbar, rompiendo con el mito del reposo absoluto. Mi enfoque profesional utiliza el movimiento inteligente como la herramienta principal de mejora funcional.<br><br>
       <strong>Te acompaño en un programa especialmente diseñado para:</strong><br>
-      <span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Mejorar la tolerancia al movimiento</span><br>
-      <span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Recuperar la movilidad funcional y dejar atrás la rigidez</span><br>
-      <span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Readaptar los ejercicios y adecuarlos a tu caso concreto sin perder rendimiento</span><br>
-      <span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Nutrir tu cuerpo con pautas dietéticas para un progreso más rápido</span>
+      <span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Mejorar la tolerancia al movimiento</span><br>
+      <span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Recuperar la movilidad funcional y dejar atrás la rigidez</span><br>
+      <span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Readaptar los ejercicios y adecuarlos a tu caso concreto sin perder rendimiento</span><br>
+      <span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Nutrir tu cuerpo con pautas dietéticas para un progreso más rápido</span>
     </p>
 
     <div class="credenciales">
@@ -3463,7 +3457,7 @@
 <section class="cta-final" id="contacto">
   <div class="section-tag" style="margin-bottom:20px;" data-i18n="cta.tag">Empieza ahora</div>
   <h2 class="section-title big-symmetric-title" data-i18n-html="cta.title">¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span></h2>
-  <p class="section-desc" data-i18n-html="cta.desc"><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.</p>
+  <p class="section-desc" data-i18n-html="cta.desc"><span class="neon-amber-cta">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.</p>
 
   <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px; position:relative; z-index:10;">
     <a href="https://form.jotform.com/252633186626360" target="_blank" class="btn-primary" style="font-size:16px; padding:18px 40px; position:relative; z-index:10;" rel="noopener noreferrer">
@@ -3473,7 +3467,7 @@
   </div>
 
   <p style="margin-top:32px; font-size:13px; color:rgba(255,255,255,0.3); letter-spacing:1px;" data-i18n="cta.footer1">
-    WWW.IDAROMEFIT.COM · PT & TSD · ESPECIALISTA EN SALUD LUMBAR
+    WWW.IDAROMEFIT.COM · ENTRENADOR & TSD · ESPECIALISTA EN SALUD LUMBAR
   </p>
   <p style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.2); letter-spacing:1px;" data-i18n="cta.footer2">
     2026 TODOS LOS DERECHOS RESERVADOS.
@@ -3885,7 +3879,7 @@
         "sobre.imgAlt": "Entrenador personal IDAROMEFIT",
         "sobre.badge": "MÁXIMA<br>CALIDAD DE<br>SERVICIO",
         "sobre.tag": "Sobre mí",
-        "sobre.body": '¡Hola! Soy Idayán, Entrenador Personal especializado en salud lumbar y Técnico Superior en Dietética. Mi propósito es ayudarte a ganar calidad de vida mediante un método individualizado que une el ejercicio físico y la nutrición para que, de una vez por todas, superes tus limitaciones y vuelvas a moverte con confianza.<br><br>Vivir con dolor de espalda condiciona cada minuto de tu día. Por eso, he centrado mi práctica en el acondicionamiento físico orientado a salud lumbar, rompiendo con el mito del reposo absoluto. Mi enfoque profesional utiliza el movimiento inteligente como la herramienta principal de mejora funcional.<br><br><strong>Te acompaño en un programa especialmente diseñado para:</strong><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Mejorar la tolerancia al movimiento</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Recuperar la movilidad funcional y dejar atrás la rigidez</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Adaptar los ejercicios a tu caso concreto sin perder rendimiento</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Nutrir tu cuerpo con pautas dietéticas para un progreso más rápido</span>',
+        "sobre.body": '¡Hola! Soy Idayán, Entrenador Personal especializado en salud lumbar y Técnico Superior en Dietética. Mi propósito es ayudarte a ganar calidad de vida mediante un método individualizado que une el ejercicio físico y la nutrición para que, de una vez por todas, superes tus limitaciones y vuelvas a moverte con confianza.<br><br>Vivir con dolor de espalda condiciona cada minuto de tu día. Por eso, he centrado mi práctica en el acondicionamiento físico orientado a salud lumbar, rompiendo con el mito del reposo absoluto. Mi enfoque profesional utiliza el movimiento inteligente como la herramienta principal de mejora funcional.<br><br><strong>Te acompaño en un programa especialmente diseñado para:</strong><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Mejorar la tolerancia al movimiento</span><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Recuperar la movilidad funcional y dejar atrás la rigidez</span><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Adaptar los ejercicios a tu caso concreto sin perder rendimiento</span><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Nutrir tu cuerpo con pautas dietéticas para un progreso más rápido</span>',
         "sobre.cred1.title": "Entrenador Personal Certificado",
         "sobre.cred1.sub": "Especialista en los trastornos de la espalda baja y salud lumbar",
         "sobre.cred2.title": "Técnico Superior en Dietética",
@@ -3984,9 +3978,9 @@
         // CTA Final
         "cta.tag": "Empieza ahora",
         "cta.title": '¿LISTO PARA<br><span style="color:var(--verde)">TU MEJOR VERSIÓN?</span>',
-        "cta.desc": '<span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.',
+        "cta.desc": '<span class="neon-amber-cta">La primera consulta y entrevista para valorar tu caso es completamente gratis.</span><br><br>Cuéntame tu objetivo y lo haremos posible.',
         "cta.btn": "Contactar ahora",
-        "cta.footer1": "WWW.IDAROMEFIT.COM · PT & TSD · ESPECIALISTA EN SALUD LUMBAR",
+        "cta.footer1": "WWW.IDAROMEFIT.COM · ENTRENADOR & TSD · ESPECIALISTA EN SALUD LUMBAR",
         "cta.footer2": "2026 TODOS LOS DERECHOS RESERVADOS."
       },
       en: {
@@ -4013,7 +4007,7 @@
         "sobre.imgAlt": "IDAROMEFIT premium personal trainer in Benidorm",
         "sobre.badge": "PREMIUM<br>SERVICE<br>QUALITY",
         "sobre.tag": "About",
-        "sobre.body": 'Hi, I\'m Idayán — Low Back Health & Exercise Specialist and Registered Dietetic Technician based on the Marina Baixa, Alicante. I help you reclaim quality of life through an individualized protocol that integrates intelligent movement and targeted nutrition — so you can finally overcome your limits and move with confidence.<br><br>Living with chronic back pain shapes every minute of your day. That\'s why I\'ve built my practice around exercise programming focused on low back health, breaking with the outdated myth of complete rest. My professional approach uses smart movement as the ultimate tool for functional improvement.<br><br><strong>I guide you through a program purpose-built to:</strong><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Improve movement tolerance</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Restore functional mobility and leave stiffness behind</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Adapt every exercise to your specific case without compromising performance</span><br><span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);"><span style="font-size:1.4em; line-height:1;">•</span> Fuel your body with strategic nutrition for faster, lasting progress</span>',
+        "sobre.body": 'Hi, I\'m Idayán — Low Back Health & Exercise Specialist and Registered Dietetic Technician based on the Marina Baixa, Alicante. I help you reclaim quality of life through an individualized protocol that integrates intelligent movement and targeted nutrition — so you can finally overcome your limits and move with confidence.<br><br>Living with chronic back pain shapes every minute of your day. That\'s why I\'ve built my practice around exercise programming focused on low back health, breaking with the outdated myth of complete rest. My professional approach uses smart movement as the ultimate tool for functional improvement.<br><br><strong>I guide you through a program purpose-built to:</strong><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Improve movement tolerance</span><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Restore functional mobility and leave stiffness behind</span><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Adapt every exercise to your specific case without compromising performance</span><br><span class="neon-amber"><span style="font-size:1.4em; line-height:1;">•</span> Fuel your body with strategic nutrition for faster, lasting progress</span>',
         "sobre.cred1.title": "Certified Personal Trainer",
         "sobre.cred1.sub": "Corrective Exercise Specialist in lower-back disorders and spinal health",
         "sobre.cred2.title": "Registered Dietetic Technician",
@@ -4112,7 +4106,7 @@
         // Final CTA
         "cta.tag": "Start Now",
         "cta.title": 'READY FOR<br><span style="color:var(--verde)">YOUR STRONGEST SELF?</span>',
-        "cta.desc": '<span style="color:#ffe033; text-shadow:0 0 8px rgba(255,224,51,0.85), 0 0 18px rgba(255,224,51,0.5), 0 0 32px rgba(255,200,0,0.3);">Your first consultation to assess your case is entirely complimentary.</span><br><br>Tell me your goal — and we\'ll build the path to get you there.',
+        "cta.desc": '<span class="neon-amber-cta">Your first consultation to assess your case is entirely complimentary.</span><br><br>Tell me your goal — and we\'ll build the path to get you there.',
         "cta.btn": "Book a Session",
         "cta.footer1": "WWW.IDAROMEFIT.COM · PERSONAL TRAINER AND SPECIALIST IN CORRECTIVE LOW BACK EXERCISES · REGISTERED DIETETIC TECHNICIAN",
         "cta.footer2": "© 2026 ALL RIGHTS RESERVED."
