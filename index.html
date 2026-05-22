@@ -73,7 +73,6 @@ a,button,input,select,label{ touch-action:manipulation; }
   border-radius:14px;
   padding:clamp(24px,5vw,48px);
   padding-top:0;
-  overflow:hidden;
   box-shadow:
     0 30px 80px rgba(0,0,0,.6),
     0 0 0 1px rgba(255,255,255,.02) inset,
@@ -85,25 +84,22 @@ a,button,input,select,label{ touch-action:manipulation; }
 /* -- Cabecera -- */
 .form-head{ text-align:center; margin-bottom:28px; margin-top:0; }
 .brand-wrap{
-  margin-left:0;
-  margin-right:0;
+  margin-left:calc(-1 * clamp(24px,5vw,48px));
+  margin-right:calc(-1 * clamp(24px,5vw,48px));
   margin-top:0;
   border-radius:14px 14px 0 0;
-  overflow:hidden;
   line-height:0;
-  padding:32px 24px 12px;
-  background:linear-gradient(160deg, #141414 0%, #0e0e0e 100%);
+  padding:36px 32px 16px;
+  background:#0a0a0a;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 .brand-img{
-  width:auto;
-  max-width:min(260px, 65%);
+  width:100%;
+  max-width:360px;
   height:auto;
-  max-height:100px;
   display:block;
-  mix-blend-mode:lighten;
   object-fit:contain;
 }
 .head-tag{
@@ -344,8 +340,9 @@ input.invalid,select.invalid{
 @media (max-width:480px){
   body{ padding:12px; }
   .form-shell{ border-radius:12px; padding:clamp(16px,4vw,28px); padding-top:0; }
-  .brand-wrap{ padding:24px 16px 10px; border-radius:12px 12px 0 0; }
-  .brand-img{ max-width:200px; max-height:80px; }
+  .brand-wrap{ padding:24px 16px 12px; border-radius:12px 12px 0 0;
+    margin-left:calc(-1 * clamp(16px,4vw,28px)); margin-right:calc(-1 * clamp(16px,4vw,28px)); }
+  .brand-img{ max-width:280px; }
   .grid-2{ grid-template-columns:1fr; }
   .check-grid{ grid-template-columns:1fr; }
   .btn-primary,.btn-secondary{ padding:14px 20px; font-size:14px; }
@@ -359,8 +356,9 @@ input.invalid,select.invalid{
 @media (max-width:390px){
   body{ padding:8px; }
   .form-shell{ border-radius:10px; padding:clamp(14px,4vw,22px); padding-top:0; }
-  .brand-wrap{ padding:20px 14px 8px; }
-  .brand-img{ max-width:180px; max-height:70px; }
+  .brand-wrap{ padding:20px 12px 10px;
+    margin-left:calc(-1 * clamp(14px,4vw,22px)); margin-right:calc(-1 * clamp(14px,4vw,22px)); }
+  .brand-img{ max-width:240px; }
   .step-title{ font-size:clamp(24px,7vw,34px); }
   .head-tag{ font-size:11px; padding:6px 14px; }
   .chip span{ padding:12px 10px; font-size:14px; }
@@ -595,7 +593,7 @@ input.invalid,select.invalid{
     <a class="btn-primary" href="https://idaromefit.com">Volver a la web</a>
   </section>
 
-  <p class="form-foot"><a href="https://www.idaromefit.com" target="_blank" rel="noopener" style="color:var(--verde);text-decoration:none;font-weight:700;">WWW.IDAROMEFIT.COM</a> - ENTRENADOR &amp; TSD - ESPECIALISTA EN SALUD LUMBAR<br>© <span id="year"></span> TODOS LOS DERECHOS RESERVADOS. / ALL RIGHTS RESERVED.</p>
+  <p class="form-foot"><a href="https://www.idaromefit.com" target="_blank" rel="noopener" style="color:var(--verde);text-decoration:none;font-weight:700;">WWW.IDAROMEFIT.COM</a> &nbsp;&mdash;&nbsp; ENTRENADOR &amp; TSD &nbsp;&mdash;&nbsp; ESPECIALISTA EN SALUD LUMBAR<br>&copy; <span id="year"></span> TODOS LOS DERECHOS RESERVADOS.</p>
 </main>
 
 <script>
